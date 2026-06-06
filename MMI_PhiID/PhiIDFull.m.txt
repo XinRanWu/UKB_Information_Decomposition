@@ -1,0 +1,28 @@
+“这段代码主要是一个 MATLAB 函数 `PhiIDFull.m`，其中定义了三个私有函数 `private_TDPhiID`、`private_FourVectorPhiID` 和 `RedundancyMMI`，以及几个辅助函数。
+
+1. `PhiIDFull` 函数是主函数，接受不同数量的输入参数，并根据输入参数的类型调用相应的私有函数进行计算。它返回一个包含所有 PhiID 分解信息的结构体。
+
+2. `private_TDPhiID` 函数用于计算时间延迟互信息 (TDMI) 的 PhiID 分解。它首先将数据标准化，然后使用 JIDT 计算 TDMI 和最小信息分割。接着调用 `private_FourVectorPhiID` 函数进行四元组 PhiID 计算。
+
+3. `private_FourVectorPhiID` 函数用于计算四元组互信息的 PhiID 分解。它计算了各种互信息量并使用 `RedundancyMMI` 函数计算单目标冗余。
+
+4. `RedundancyMMI` 函数用于计算单目标冗余，根据不同的互信息量选择冗余值。它通过比较两个输入的互信息量来确定哪一个作为冗余。
+
+此外，还有一些辅助函数用于计算矩阵的行列式的对数、矩阵的半正定分解和互信息。
+
+这些函数一起实现了 PhiID（Integrated Information Decomposition）的计算过程，通过计算输入数据中的不同维度之间的信息流动，分解为唯一信息、冗余信息和协同信息等组成部分，以便更好地理解系统的信息动态。”
+
+
+“这段注释是针对 MATLAB 函数 PHIIDFULL 的说明文档，它解释了该函数的功能、用法以及返回结果的形式。具体来说，它包括以下几个方面的内容：
+
+功能描述： 该函数用于计算输入数据的 PhiID（Integrated Information Decomposition）分解。它假设输入数据符合多元高斯分布，并使用 MMI（Minimum Mutual Info）PhiID 方法进行计算。
+
+使用方式： 函数有两种使用方式：
+
+当输入参数是一个数据矩阵 X 和一个整数 TAU 时，函数计算 X 的时间延迟互信息的 PhiID 分解。
+当输入参数是四个数据矩阵 X1、X2、Y1 和 Y2 时，函数计算这四个变量之间的互信息 I(X1, X2; Y1, Y2) 的 PhiID 分解。
+结果形式： 函数返回一个结构体 A，其中包含了所有的 PhiID 整合信息原子。这些原子通过一个三字符字符串命名，形式为 QtP，其中 Q 和 P 分别代表着冗余（redundancy）、独特的 X（unique X）、独特的 Y（unique Y）和协同作用（synergy）。
+
+例如，A.rtr 代表着从第一个输入数据到第二个输入数据的冗余。
+参考文献： 注释提供了关于该函数的参考文献，即 Mediano 等人的研究论文，该论文探讨了信息动态现象的分类和超越综合信息。”
+
